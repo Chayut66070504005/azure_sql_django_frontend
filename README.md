@@ -1,16 +1,82 @@
-# React + Vite
+# Azure SQL Django Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the React frontend application for the Azure SQL Django API project. It provides a premium, responsive admin interface for managing Stores, Products, Users, Orders, and Reviews.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Framework:** [React 18](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **Runtime:** Node.js 24 LTS (Required)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Routing:** [React Router v6](https://reactrouter.com/)
+- **HTTP Client:** [Axios](https://axios-http.com/)
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Store Management:** CRUD operations for physical store locations.
+- **Product Catalog:** Manage products with a premium grid view.
+- **Order System:** Create orders via a multi-step wizard and track status.
+- **User Management:** View and search platform users.
+- **Reviews:** Integrated MongoDB-backed review system for products.
+- **Premium UI:** Dark mode optimized, glassmorphism effects, and smooth transitions.
 
-## Expanding the ESLint configuration
+## 🛠️ Prerequisites
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Node.js:** version 24.0.0 or higher.
+- **Backend:** The Django API must be running on `http://localhost:8000`.
+
+## 📦 Installation
+
+1. Clone the repository (if you haven't already).
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+## ▶️ Running the Application
+
+### Development
+Start the development server with Hot Module Replacement (HMR):
+
+```bash
+npm run dev
+```
+
+The app will be available at usually `http://localhost:5173`.
+
+### Production Build
+Build the application for production:
+
+```bash
+npm run build
+```
+
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+## 📁 Project Structure
+
+```text
+src/
+├── assets/          # Static assets
+├── components/      # Reusable UI components
+│   └── ui/          # Generic UI elements (Button, Card, Modal, Input)
+├── pages/           # Page components (Dashboard, Stores, Products, etc.)
+├── services/        # API service modules
+├── App.jsx          # Main application component & routing
+├── index.css        # Global styles & Tailwind configuration
+└── main.jsx         # Entry point
+```
+
+## 🎨 Design System
+
+The project uses a custom Tailwind configuration defined in `src/index.css` using modern CSS variables:
+
+- **Primary Color:** Sky Blue (`#38bdf8`)
+- **Secondary Color:** Indigo (`#818cf8`)
+- **Accent Color:** Pink (`#f472b6`)
+- **Background:** Slate 900 (`#0f172a`)
