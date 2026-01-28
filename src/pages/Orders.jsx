@@ -196,6 +196,67 @@ const OrderWizard = ({ isOpen, onClose, onOrderCreated }) => {
     );
 };
 
+const EditOrderModal = ({ isOpen, onClose, order, onOrderUpdated }) => {
+    const [status, setStatus] = useState(order?.status || 'PENDING');
+    const [submitting, setSubmitting] = useState(false);
+
+    useEffect(() => {
+        if (order) {
+            setStatus(order.status);
+        }
+    }, [order]);
+
+    const handleSubmit = async () => {
+        if (!order) return;
+        setSubmitting(true);
+        try {
+            await orderService.update(order.id, { status });
+            onOrderUpdated();
+            onClose();
+        } catch (error) {
+            console.error(error);
+            alert('Failed to update order');
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    if (!order) return null;
+
+    return (
+        <Modal isOpen={isOpen} onClose={onClose} title={`Edit Order #${order.id}`}>
+            <div className="space-y-6">
+                <div>
+                    <h3 className="text-sm font-medium text-slate-400 mb-2">Order Information</h3>
+                    <div className="bg-slate-800/50 p-4 rounded-lg border border-slate-700/50 space-y-2">
+                        <p className="text-white"><span className="text-slate-400 w-24 inline-block">Date:</span> {new Date(order.created_at).toLocaleString()}</p>
+                        <p className="text-white"><span className="text-slate-400 w-24 inline-block">Items:</span> {order.items ? order.items.length : 0}</p>
+                        <p className="text-white"><span className="text-slate-400 w-24 inline-block">Total:</span> ${order.total_amount || 'N/A'}</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label className="block text-sm font-medium text-slate-400 mb-2">Status</label>
+                    <select
+                        value={status}
+                        onChange={(e) => setStatus(e.target.value)}
+                        className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-white"
+                    >
+                        <option value="PENDING">Pending</option>
+                        <option value="COMPLETED">Completed</option>
+                        <option value="CANCELLED">Cancelled</option>
+                    </select>
+                </div>
+
+                <div className="flex justify-end gap-3 pt-4">
+                    <Button variant="secondary" onClick={onClose}>Cancel</Button>
+                    <Button onClick={handleSubmit} isLoading={submitting}>Update Order</Button>
+                </div>
+            </div>
+        </Modal>
+    );
+};
+
 const Orders = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
