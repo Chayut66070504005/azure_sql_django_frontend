@@ -43,6 +43,19 @@ export const ProductReviewsModal = ({ isOpen, onClose, product }) => {
     const fetchReviews = async () => {
         setLoading(true);
         try {
+            const data = await reviewService.getAll(product.id);
+            setReviews(data);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setSubmitting(true);
+        try {
             // First, filter the comment
             const filterResponse = await contentFilterService.filterComment(newReview.comment);
 
