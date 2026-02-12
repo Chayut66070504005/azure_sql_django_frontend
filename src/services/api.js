@@ -60,7 +60,7 @@ export const reviewService = {
 };
 
 // Function App URL - Replace with your actual Azure Function App URL
-const FUNCTION_API_URL = 'https://aum-filter-app-hecgg6a4f2dufnhd.southeastasia-01.azurewebsites.net/api';
+const FUNCTION_API_URL = 'aum-review-app-g2bxdydycthpezea.southeastasia-01.azurewebsites.net/api';
 
 const functionApi = axios.create({
   baseURL: FUNCTION_API_URL,
