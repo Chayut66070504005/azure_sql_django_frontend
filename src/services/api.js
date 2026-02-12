@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://aum-backend-b-daeuchgbdsdqhmd7.eastasia-01.azurewebsites.net/api',
+  baseURL: 'https://aum-backend-fhauchffh4cngxet.southeastasia-01.azurewebsites.net/api', // Azure-hosted API
   // baseURL: 'http://127.0.0.1:8000/api', // Local API
   headers: {
     'Content-Type': 'application/json',
